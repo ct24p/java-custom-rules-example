@@ -1,26 +1,27 @@
 package checks.assertions;
 
-//import org.junit.Test;
+import junit.framework.TestCase;
+import org.junit.Test;
 import org.junit.Assert;
 
 abstract class Junit4Test {
 
-    static class ExtendsTestCase extends junit.framework.TestCase {
-        public void testContainsNoAssertions() { // Noncompliant
-        }
-    }
-    
-    @org.junit.Test(expected = IllegalStateException.class)
-    public void junitTestAnnotatedWithExpected() {
+    @Test(expected = IllegalStateException.class)
+    public void junit_test_annotated_with_expected() {
         throw new IllegalStateException("message");
     }
 
-    @org.junit.Test
-    public void containsNoAssertions() { // Noncompliant [[sc=17;ec=37]] {{Add at least one assertion to this test case.}}
+    @Test
+    public void contains_no_assertions() { // Noncompliant [[sc=17;ec=39]] {{Add at least one assertion to this test case.}}
     }
 
-    @org.junit.Test
-    public void junitAssertEquals() {
-        Assert.assertEquals(true, true);
+    static class ExtendsTestCase extends junit.framework.TestCase {
+        public void test_contains_no_assertions() { // Noncompliant
+        }
+    }
+
+    @Test
+    public void junit_assert_equals() {
+        org.junit.Assert.assertEquals(true, true);
     }
 }

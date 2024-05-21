@@ -1,4 +1,4 @@
-package checks.assertions;
+package checks.tests.AssertionsInTestsCheck;
 
 import junit.framework.TestCase;
 
@@ -6,40 +6,40 @@ import javax.annotation.Nullable;
 
 class Junit3Test extends TestCase {
 
-    public void testContainsNoAssertions() { // Noncompliant
+    public void test_contains_no_assertions() { // Noncompliant
     }
 
-    public void testAssertAssertTrue() {
+    public void test_assert_assertTrue() {
         org.junit.Assert.assertTrue(true);
     }
 
     @Nullable
-    public void notATest() {
+    public void not_a_test() {
     }
 
-    public void testAssertionInHelperMethod() {
-        helperMethod();
+    public void test_assertion_in_helper_method() {
+        helper_method();
     }
 
-    public void testAssertionInStaticHelperMethod() {
-        staticHelperMethod();
+    public void test_assertion_in_static_helper_method() {
+        static_helper_method();
     }
 
-    public void testNoAssertionInHelperMethod() { // Noncompliant
-        helperMethodNoAssert();
+    public void test_no_assertion_in_helper_method() { // Noncompliant
+        helper_method_no_assert();
     }
 
-    public void helperMethod() {
+    public void helper_method() {
         org.junit.Assert.assertTrue(true);
         org.junit.Assert.assertTrue(false);
     }
 
-    public static void staticHelperMethod() {
+    public static void static_helper_method() {
         org.junit.Assert.assertTrue(true);
         org.junit.Assert.assertTrue(false);
     }
 
-    public void helperMethodNoAssert() {
-        notATest();
+    public void helper_method_no_assert() {
+        not_a_test();
     }
 }
